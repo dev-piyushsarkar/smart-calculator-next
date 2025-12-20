@@ -7,14 +7,17 @@ const BasicCalculator = () => {
 			<Input
 				type="number"
 				className="col-span-2"
+				placeholder="Number 1"
 			/>
 			<Input
 				type="number"
 				className="col-span-2"
+				placeholder="Number 2"
 			/>
 			<Input
 				disabled
 				className="col-span-4"
+				placeholder="Total"
 			/>
 			<Button className="cursor-pointer">Add</Button>
 			<Button className="cursor-pointer">Subtract</Button>

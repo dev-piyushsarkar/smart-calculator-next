@@ -1,16 +1,10 @@
-import BasicCalculator from "@/components/BasicCalculator";
 import {
 	Card,
 	CardContent,
 	CardHeader,
 	CardTitle,
 } from "@/components/shadcnui/card";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-	title: "Nextjs Starter Frontend",
-	description: "Production grade Next.js starter template",
-};
+import SmartCalculator from "@/components/SmartCalculator";
 
 const page = () => {
 	return (
@@ -18,11 +12,11 @@ const page = () => {
 			<Card>
 				<CardHeader>
 					<CardTitle className="grid place-items-center text-2xl">
-						Basic Calculator
+						Smart Calculator
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<BasicCalculator />
+					<SmartCalculator />
 				</CardContent>
 			</Card>
 		</section>
