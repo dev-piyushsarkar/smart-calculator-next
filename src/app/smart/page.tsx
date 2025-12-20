@@ -5,7 +5,12 @@ import {
 	CardTitle,
 } from "@/components/shadcnui/card";
 import SmartCalculator from "@/components/SmartCalculator";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+	title: "Smart | Calculator App",
+	description: "Smart Calculator App",
+};
 const page = () => {
 	return (
 		<section className="grid h-[90dvh] place-items-center">
