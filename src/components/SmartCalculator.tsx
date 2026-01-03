@@ -57,6 +57,7 @@ const SmartCalculator = () => {
 				value={inputOne}
 			/>
 			<Select
+				disabled={inputOne === "" && inputTwo === ""}
 				value={operator}
 				onValueChange={(valuee) => setOperator(valuee)}>
 				<SelectTrigger className="w-full">
@@ -90,11 +91,13 @@ const SmartCalculator = () => {
 				className="col-span-2"
 			/>
 			<Button
+				disabled={inputOne === "" || inputTwo === "" || operator === ""}
 				onClick={logicHandel}
 				className="cursor-pointer">
 				Calculate
 			</Button>
 			<Button
+				disabled={inputOne === "" && inputTwo === "" && value === ""}
 				onClick={clearAll}
 				className="col-span-3 cursor-pointer bg-red-500 text-white hover:bg-green-400">
 				Reset
