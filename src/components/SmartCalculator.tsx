@@ -1,4 +1,7 @@
+"use client";
+
 import { Divide, MinusIcon, PlusIcon, X } from "lucide-react";
+import { useState } from "react";
 import { Button } from "./shadcnui/button";
 import { Input } from "./shadcnui/input";
 import {
@@ -10,12 +13,53 @@ import {
 } from "./shadcnui/select";
 
 const SmartCalculator = () => {
+	const [inputOne, setInputOne] = useState("");
+	const [inputTwo, setInputTwo] = useState("");
+	const [value, setFinalValue] = useState("");
+	const [operator, setOperator] = useState("");
+
+	const logicHandel = () => {
+		if (inputOne !== "" && inputTwo !== "" && operator !== "") {
+			const inone = parseInt(inputOne);
+			const intwo = parseInt(inputTwo);
+
+			switch (operator) {
+				case "plus":
+					setFinalValue((inone + intwo).toString());
+					break;
+				case "minus":
+					setFinalValue((inone - intwo).toString());
+					break;
+				case "multiply":
+					setFinalValue((inone * intwo).toString());
+					break;
+				case "divide":
+					setFinalValue((inone / intwo).toString());
+					break;
+			}
+		}
+		setInputOne("");
+		setInputTwo("");
+		setOperator("");
+	};
+	const clearAll = () => {
+		setInputOne("");
+		setInputTwo("");
+		setOperator("");
+		setFinalValue("");
+	};
+
 	return (
 		<section className="grid grid-cols-3 gap-5">
-			<Input placeholder="Number 1" />
-			<Select>
+			<Input
+				type="number"
+				placeholder="Number 1"
+				onChange={({ target }) => setInputOne(target.value)}
+				value={inputOne}
+			/>
+			<Select onValueChange={(i) => setOperator(i)}>
 				<SelectTrigger className="w-full">
-					<SelectValue placeholder="Operators"></SelectValue>
+					<SelectValue placeholder="Operators">Operators</SelectValue>
 				</SelectTrigger>
 				<SelectContent>
 					<SelectItem value="plus">
@@ -32,14 +76,27 @@ const SmartCalculator = () => {
 					</SelectItem>
 				</SelectContent>
 			</Select>
-			<Input placeholder="Number 2" />
 			<Input
+				type="number"
+				onChange={(e) => setInputTwo(e.target.value)}
+				placeholder="Number 2"
+			/>
+			<Input
+				value={value}
 				disabled
 				placeholder="Total"
 				className="col-span-2"
 			/>
-			<Button className="cursor-pointer">Calculate</Button>
-			<Button className="col-span-3 cursor-pointer bg-red-500 text-white hover:bg-green-400">
+			<Button
+				disabled={inputOne === "" && inputTwo === "" && operator === ""}
+				onClick={logicHandel}
+				className="cursor-pointer">
+				Calculate
+			</Button>
+			<Button
+				disabled={inputOne === "" && inputTwo === "" && operator === ""}
+				onClick={clearAll}
+				className="col-span-3 cursor-pointer bg-red-500 text-white hover:bg-green-400">
 				Reset
 			</Button>
 		</section>
